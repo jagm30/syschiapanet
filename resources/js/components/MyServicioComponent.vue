@@ -1,10 +1,8 @@
 <template>
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <form-component @new="addServicio">
-                
-            </form-component>
-            
+            <form-component @new="addServicio">                
+            </form-component>            
             <servicios-component
                 v-for="servicio in servicios"
                 :key="servicio.id"
