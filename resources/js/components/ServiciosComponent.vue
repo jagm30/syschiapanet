@@ -2,15 +2,19 @@
     <div class="card">
         <div class="card-header">Servicio del dia {{servicio.created_at}}</div>
         <div class="card-body">
-            <p>
+            <input  v-if="editMode" type="text" class="form-control" v-model="servicio.descripcion" >
+            <p v-else >
                 {{servicio.descripcion}}
-            </p>
+            </p>            
         </div>
         <div class="card-footer">
-            <button class="btn btn-default">
+            <button v-if="editMode" class="btn btn-success" v-on:click="onClickUpdate()">
+                Guardar cambios
+            </button>
+            <button v-else class="btn btn-default" v-on:click="onClickEdit()">
                 Editar
             </button>
-            <button class="btn btn-danger">
+            <button class="btn btn-danger" v-on:click="onClickDelete()">
                 Eliminar
             </button>
         </div>
@@ -22,11 +26,23 @@
         props: ['servicio'],
         data(){
             return{
-         
+                editMode:false
             };
         },
         mounted() {
             console.log('Component mounted.')
+        },
+        methods: {
+            onClickDelete(){
+                this.$emit('delete');
+            },
+            onClickEdit(){
+                this.editMode= true;
+            },
+            onClickUpdate(){
+                this.editMode= false;
+                this.$emit('update', servicio);  
+            }
         }
     }
 </script>

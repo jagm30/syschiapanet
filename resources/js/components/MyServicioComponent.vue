@@ -4,9 +4,11 @@
             <form-component @new="addServicio">                
             </form-component>            
             <servicios-component
-                v-for="servicio in servicios"
+                v-for="(servicio, index) in servicios"
                 :key="servicio.id"
-                :servicio="servicio">
+                :servicio="servicio"
+                @update="updateServicio(index, ...arguments)"
+                @delete="deleteServicio(index)">
             </servicios-component>
         </div>
     </div>
@@ -29,6 +31,12 @@
         methods:{
             addServicio(servicio){
                 this.servicios.push(servicio);
+            },
+            deleteServicio(index){
+                this.servicios.splice(index, 1);
+            },
+            updateServicio(index, servicio){
+                this.servicios[index] = servicio;
             }
         }
     }

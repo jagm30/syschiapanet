@@ -1845,6 +1845,12 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     addServicio: function addServicio(servicio) {
       this.servicios.push(servicio);
+    },
+    deleteServicio: function deleteServicio(index) {
+      this.servicios.splice(index, 1);
+    },
+    updateServicio: function updateServicio(index, servicio) {
+      this.servicios[index] = servicio;
     }
   }
 });
@@ -1879,13 +1885,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['servicio'],
   data: function data() {
-    return {};
+    return {
+      editMode: false
+    };
   },
   mounted: function mounted() {
     console.log('Component mounted.');
+  },
+  methods: {
+    onClickDelete: function onClickDelete() {
+      this.$emit('delete');
+    },
+    onClickEdit: function onClickEdit() {
+      this.editMode = true;
+    },
+    onClickUpdate: function onClickUpdate() {
+      this.editMode = false;
+      this.$emit('update', servicio);
+    }
   }
 });
 
@@ -37016,10 +37040,24 @@ var render = function() {
       [
         _c("form-component", { on: { new: _vm.addServicio } }),
         _vm._v(" "),
-        _vm._l(_vm.servicios, function(servicio) {
+        _vm._l(_vm.servicios, function(servicio, index) {
           return _c("servicios-component", {
             key: servicio.id,
-            attrs: { servicio: servicio }
+            attrs: { servicio: servicio },
+            on: {
+              update: function($event) {
+                var i = arguments.length,
+                  argsArray = Array(i)
+                while (i--) argsArray[i] = arguments[i]
+                return _vm.updateServicio.apply(
+                  void 0,
+                  [index].concat(argsArray)
+                )
+              },
+              delete: function($event) {
+                return _vm.deleteServicio(index)
+              }
+            }
           })
         })
       ],
@@ -37055,32 +37093,78 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "card-body" }, [
-      _c("p", [
-        _vm._v(
-          "\n            " + _vm._s(_vm.servicio.descripcion) + "\n        "
-        )
-      ])
+      _vm.editMode
+        ? _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.servicio.descripcion,
+                expression: "servicio.descripcion"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text" },
+            domProps: { value: _vm.servicio.descripcion },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.servicio, "descripcion", $event.target.value)
+              }
+            }
+          })
+        : _c("p", [
+            _vm._v(
+              "\n            " + _vm._s(_vm.servicio.descripcion) + "\n        "
+            )
+          ])
     ]),
     _vm._v(" "),
-    _vm._m(0)
+    _c("div", { staticClass: "card-footer" }, [
+      _vm.editMode
+        ? _c(
+            "button",
+            {
+              staticClass: "btn btn-success",
+              on: {
+                click: function($event) {
+                  return _vm.onClickUpdate()
+                }
+              }
+            },
+            [_vm._v("\n            Guardar cambios\n        ")]
+          )
+        : _c(
+            "button",
+            {
+              staticClass: "btn btn-default",
+              on: {
+                click: function($event) {
+                  return _vm.onClickEdit()
+                }
+              }
+            },
+            [_vm._v("\n            Editar\n        ")]
+          ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-danger",
+          on: {
+            click: function($event) {
+              return _vm.onClickDelete()
+            }
+          }
+        },
+        [_vm._v("\n            Eliminar\n        ")]
+      )
+    ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-footer" }, [
-      _c("button", { staticClass: "btn btn-default" }, [
-        _vm._v("\n            Editar\n        ")
-      ]),
-      _vm._v(" "),
-      _c("button", { staticClass: "btn btn-danger" }, [
-        _vm._v("\n            Eliminar\n        ")
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
