@@ -4,6 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Servicio;
+use Illuminate\Support\Facades\Auth;
+
+
+
 class ServicioController extends Controller
 {
     public function __construct()
@@ -34,6 +39,8 @@ class ServicioController extends Controller
         $servicio->descripcion = $request->descripcion;
         $servicio->user_id = auth()->id();
         $servicio->save();
+
+        return $servicio;
     }
 
     /**
@@ -60,6 +67,8 @@ class ServicioController extends Controller
         $servicio = Servicio::find($id);
         $servicio->descripcion = $request->descripcion;
         $servicio->save();
+
+        return $servicio;
     }
 
     /**

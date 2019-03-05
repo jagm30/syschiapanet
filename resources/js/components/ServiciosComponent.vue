@@ -34,14 +34,26 @@
         },
         methods: {
             onClickDelete(){
-                this.$emit('delete');
+                const params ={
+                    descripcion : this.servicio.descripcion
+                };
+                axios.delete('/servicios/'+this.servicio.id).then((response)=>{
+                    this.$emit('delete');
+                });
+                
             },
             onClickEdit(){
                 this.editMode= true;
             },
             onClickUpdate(){
-                this.editMode= false;
-                this.$emit('update', servicio);  
+                const params ={
+                    descripcion : this.servicio.descripcion
+                };
+                axios.put('/servicios/'+this.servicio.id,params).then((response)=>{
+                    this.editMode= false;
+                    const servicio = response.data;
+                    this.$emit('update', servicio); 
+                });                
             }
         }
     }

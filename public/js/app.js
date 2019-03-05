@@ -1783,21 +1783,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      cliente: ''
+      descripcion: ''
     };
   },
-  mounted: function mounted() {
-    console.log('Component mounted.');
+  mounted: function mounted() {// console.log('Component mounted.')
   },
   methods: {
     newServicio: function newServicio() {
-      var servicio = {
-        id: 2,
-        descripcion: this.cliente,
-        created_at: '28/02/2019'
+      var _this = this;
+
+      var params = {
+        descripcion: this.descripcion
       };
-      this.$emit('new', servicio);
-      this.cliente = ''; //alert(this.cliente);
+      this.descripcion = '';
+      axios.post('/servicios', params).then(function (response) {
+        var servicio = response.data;
+
+        _this.$emit('new', servicio);
+      }); //alert(this.descripcion);
     }
   }
 });
@@ -1832,15 +1835,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      servicios: [{
-        'id': 1,
-        'descripcion': 'abc',
-        'created_at': '28/02/2019'
-      }]
+      servicios: []
     };
   },
   mounted: function mounted() {
-    console.log('Component mounted.');
+    var _this = this;
+
+    axios.get('servicios/').then(function (response) {
+      _this.servicios = response.data;
+    });
   },
   methods: {
     addServicio: function addServicio(servicio) {
@@ -1901,14 +1904,30 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     onClickDelete: function onClickDelete() {
-      this.$emit('delete');
+      var _this = this;
+
+      var params = {
+        descripcion: this.servicio.descripcion
+      };
+      axios.delete('/servicios/' + this.servicio.id).then(function (response) {
+        _this.$emit('delete');
+      });
     },
     onClickEdit: function onClickEdit() {
       this.editMode = true;
     },
     onClickUpdate: function onClickUpdate() {
-      this.editMode = false;
-      this.$emit('update', servicio);
+      var _this2 = this;
+
+      var params = {
+        descripcion: this.servicio.descripcion
+      };
+      axios.put('/servicios/' + this.servicio.id, params).then(function (response) {
+        _this2.editMode = false;
+        var servicio = response.data;
+
+        _this2.$emit('update', servicio);
+      });
     }
   }
 });
@@ -36976,26 +36995,28 @@ var render = function() {
         },
         [
           _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "cliente" } }, [_vm._v("Cliente")]),
+            _c("label", { attrs: { for: "descripcion" } }, [
+              _vm._v("descripcion")
+            ]),
             _vm._v(" "),
             _c("input", {
               directives: [
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.cliente,
-                  expression: "cliente"
+                  value: _vm.descripcion,
+                  expression: "descripcion"
                 }
               ],
               staticClass: "form-control",
-              attrs: { type: "text", name: "", name: "cliente" },
-              domProps: { value: _vm.cliente },
+              attrs: { type: "text", name: "descripcion" },
+              domProps: { value: _vm.descripcion },
               on: {
                 input: function($event) {
                   if ($event.target.composing) {
                     return
                   }
-                  _vm.cliente = $event.target.value
+                  _vm.descripcion = $event.target.value
                 }
               }
             })
@@ -49593,8 +49614,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\xampp\htdocs\syschiapanet\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\xampp\htdocs\syschiapanet\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\syschiapanet\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\syschiapanet\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

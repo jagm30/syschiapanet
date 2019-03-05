@@ -18,15 +18,13 @@
     export default {
     data(){
         return{
-            servicios:[{
-                'id':1,
-                'descripcion': 'abc',
-                'created_at': '28/02/2019'
-            }]
+            servicios:[]
         }
     },
         mounted() {
-            console.log('Component mounted.')
+            axios.get('servicios/').then((response)=>{
+                this.servicios = response.data;
+            });
         },
         methods:{
             addServicio(servicio){

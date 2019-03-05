@@ -4,8 +4,8 @@
         <div class="card-body">        
             <form action="" v-on:submit.prevent="newServicio()">
                 <div class="form-group">
-                    <label for="cliente">Cliente</label>
-                    <input type="text" name="" class="form-control" name="cliente" v-model="cliente">
+                    <label for="descripcion">descripcion</label>
+                    <input type="text"  class="form-control" name="descripcion" v-model="descripcion">
                 </div>
                 <button type="submit" class="btn btn-primary">
                     Registrar
@@ -19,22 +19,25 @@
     export default {
     data(){
         return{
-            cliente: ''
+            descripcion: ''
         }
     },
         mounted() {
-            console.log('Component mounted.')
+           // console.log('Component mounted.')
         },
         methods:{
             newServicio(){
-                let servicio = {
-                    id:2,
-                    descripcion: this.cliente,
-                    created_at: '28/02/2019'
+                const params = {
+                    descripcion : this.descripcion
                 };
-                this.$emit('new', servicio);
-                this.cliente = '';
-                //alert(this.cliente);
+                this.descripcion = '';
+                axios.post('/servicios',params).then((response)=>{
+                    const servicio = response.data;
+                    this.$emit('new', servicio);                    
+                });
+               
+                
+                //alert(this.descripcion);
             }
         }
     }
