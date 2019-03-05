@@ -23,6 +23,11 @@ Vue.component('my-servicio-component', require('./components/MyServicioComponent
 Vue.component('form-component', require('./components/FormComponent.vue').default);
 Vue.component('servicios-component', require('./components/ServiciosComponent.vue').default);
 
+
+Vue.component('my-cliente-component', require('./components/MyClienteComponent.vue').default);
+Vue.component('formcliente-component', require('./components/FormClienteComponent.vue').default);
+Vue.component('clientes-component', require('./components/ClienteComponent.vue').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
