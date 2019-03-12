@@ -1786,6 +1786,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['cliente'],
   data: function data() {
@@ -1980,6 +1993,19 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -37193,12 +37219,8 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "card" }, [
-    _c("div", { staticClass: "card-header" }, [
-      _vm._v("Cliente: " + _vm._s(_vm.cliente.nombre))
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "card-body" }, [
+  return _c("tr", [
+    _c("td", [
       _vm.editMode
         ? _c("input", {
             directives: [
@@ -37226,7 +37248,95 @@ var render = function() {
           ])
     ]),
     _vm._v(" "),
-    _c("div", { staticClass: "card-footer" }, [
+    _c("td", [
+      _vm.editMode
+        ? _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.cliente.email,
+                expression: "cliente.email"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text" },
+            domProps: { value: _vm.cliente.email },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.cliente, "email", $event.target.value)
+              }
+            }
+          })
+        : _c("p", [
+            _vm._v("\n            " + _vm._s(_vm.cliente.email) + "\n        ")
+          ])
+    ]),
+    _vm._v(" "),
+    _c("td", [
+      _vm.editMode
+        ? _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.cliente.telefono,
+                expression: "cliente.telefono"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text" },
+            domProps: { value: _vm.cliente.telefono },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.cliente, "telefono", $event.target.value)
+              }
+            }
+          })
+        : _c("p", [
+            _vm._v(
+              "\n            " + _vm._s(_vm.cliente.telefono) + "\n        "
+            )
+          ])
+    ]),
+    _vm._v(" "),
+    _c("td", [
+      _vm.editMode
+        ? _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.cliente.direccion,
+                expression: "cliente.direccion"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { type: "text" },
+            domProps: { value: _vm.cliente.direccion },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.cliente, "direccion", $event.target.value)
+              }
+            }
+          })
+        : _c("p", [
+            _vm._v(
+              "\n            " + _vm._s(_vm.cliente.direccion) + "\n        "
+            )
+          ])
+    ]),
+    _vm._v(" "),
+    _c("td", [
       _vm.editMode
         ? _c(
             "button",
@@ -37557,32 +37667,59 @@ var render = function() {
       [
         _c("formcliente-component", { on: { new: _vm.addCliente } }),
         _vm._v(" "),
-        _vm._l(_vm.clientes, function(cliente, index) {
-          return _c("clientes-component", {
-            key: cliente.id,
-            attrs: { cliente: cliente },
-            on: {
-              update: function($event) {
-                var i = arguments.length,
-                  argsArray = Array(i)
-                while (i--) argsArray[i] = arguments[i]
-                return _vm.updateCliente.apply(
-                  void 0,
-                  [index].concat(argsArray)
-                )
-              },
-              delete: function($event) {
-                return _vm.deleteCliente(index)
-              }
-            }
-          })
-        })
+        _c("table", { staticClass: "table table-striped" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            _vm._l(_vm.clientes, function(cliente, index) {
+              return _c("clientes-component", {
+                key: cliente.id,
+                attrs: { cliente: cliente },
+                on: {
+                  update: function($event) {
+                    var i = arguments.length,
+                      argsArray = Array(i)
+                    while (i--) argsArray[i] = arguments[i]
+                    return _vm.updateCliente.apply(
+                      void 0,
+                      [index].concat(argsArray)
+                    )
+                  },
+                  delete: function($event) {
+                    return _vm.deleteCliente(index)
+                  }
+                }
+              })
+            }),
+            1
+          )
+        ])
       ],
-      2
+      1
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Nombre")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Email")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Telefono")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Direccion")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Accion")])
+      ])
+    ])
+  }
+]
 render._withStripped = true
 
 

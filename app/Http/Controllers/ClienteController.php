@@ -87,8 +87,11 @@ class ClienteController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $cliente = Cliente::find($id);
-        $cliente->nombre = $request->nombre;
+        $cliente            = Cliente::find($id);
+        $cliente->nombre    = $request->nombre;
+        $cliente->email     = $request->email;
+        $cliente->telefono  = $request->telefono;
+        $cliente->direccion = $request->direccion;
         $cliente->save();
 
         return $cliente;

@@ -1,13 +1,26 @@
 <template>
-    <div class="card">
-        <div class="card-header">Cliente: {{cliente.nombre}}</div>
-        <div class="card-body">
-            <input  v-if="editMode" type="text" class="form-control" v-model="cliente.nombre" >
-            <p v-else >
+    <tr>
+        <td>
+            <input v-if="editMode" type="text" class="form-control" v-model="cliente.nombre" > <p v-else >
                 {{cliente.nombre}}
-            </p>            
-        </div>
-        <div class="card-footer">
+            </p>  
+        </td>
+        <td><input v-if="editMode" type="text" class="form-control" v-model="cliente.email" > 
+            <p v-else >
+                {{cliente.email}}
+            </p>
+        </td>
+        <td><input v-if="editMode" type="text" class="form-control" v-model="cliente.telefono" > 
+            <p v-else >
+                {{cliente.telefono}}
+            </p>
+        </td>
+        <td><input v-if="editMode" type="text" class="form-control" v-model="cliente.direccion" > 
+            <p v-else >
+                {{cliente.direccion}}
+            </p>
+        </td>
+        <td>
             <button v-if="editMode" class="btn btn-success" v-on:click="onClickUpdate()">
                 Guardar cambios
             </button>
@@ -17,8 +30,8 @@
             <button class="btn btn-danger" v-on:click="onClickDelete()">
                 Eliminar
             </button>
-        </div>
-    </div>
+        </td>
+    </tr>
 </template>
 
 <script>
