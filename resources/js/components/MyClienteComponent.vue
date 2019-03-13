@@ -3,6 +3,7 @@
         <div class="col-md-8">
             <formcliente-component @new="addCliente">                
             </formcliente-component>
+            <hr>
             <table class="table table-striped">
                 <thead>
                   <tr>

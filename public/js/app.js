@@ -2022,6 +2022,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -37667,6 +37668,8 @@ var render = function() {
       [
         _c("formcliente-component", { on: { new: _vm.addCliente } }),
         _vm._v(" "),
+        _c("hr"),
+        _vm._v(" "),
         _c("table", { staticClass: "table table-striped" }, [
           _vm._m(0),
           _vm._v(" "),
@@ -50511,8 +50514,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! D:\xampp\htdocs\syschiapanet\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\xampp\htdocs\syschiapanet\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\syschiapanet\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\syschiapanet\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
