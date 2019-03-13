@@ -1957,27 +1957,39 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      descripcion: ''
+      clientes: []
     };
   },
-  mounted: function mounted() {// console.log('Component mounted.')
+  mounted: function mounted() {
+    var _this = this;
+
+    // console.log('Component mounted.')
+    axios.get('clientes/').then(function (response) {
+      _this.clientes = response.data;
+    });
   },
   methods: {
     newServicio: function newServicio() {
-      var _this = this;
+      var _this2 = this;
 
       var params = {
-        descripcion: this.descripcion
+        descripcion: this.cliente
       };
       this.descripcion = '';
       axios.post('/servicios', params).then(function (response) {
         var servicio = response.data;
 
-        _this.$emit('new', servicio);
-      }); //alert(this.descripcion);
+        _this2.$emit('new', servicio);
+      });
     }
   }
 });
@@ -37585,7 +37597,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "card" }, [
     _c("div", { staticClass: "card-header" }, [
-      _vm._v("¿En que estas pensando ahora?")
+      _vm._v("Selecciona el usuario:")
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "card-body" }, [
@@ -37602,31 +37614,46 @@ var render = function() {
         },
         [
           _c("div", { staticClass: "form-group" }, [
-            _c("label", { attrs: { for: "descripcion" } }, [
-              _vm._v("descripcion")
-            ]),
+            _c("label", { attrs: { for: "cliente" } }, [_vm._v("Cliente")]),
             _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.descripcion,
-                  expression: "descripcion"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "text", name: "descripcion" },
-              domProps: { value: _vm.descripcion },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.cliente,
+                    expression: "cliente"
                   }
-                  _vm.descripcion = $event.target.value
+                ],
+                staticClass: "form-control",
+                attrs: { name: "cliente" },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.cliente = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  }
                 }
-              }
-            })
+              },
+              _vm._l(_vm.clientes, function(cliente, index) {
+                return _c(
+                  "option",
+                  { key: cliente.id, attrs: { cliente: cliente } },
+                  [_vm._v(_vm._s(cliente.nombre))]
+                )
+              }),
+              0
+            )
           ]),
           _vm._v(" "),
           _c(
