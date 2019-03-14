@@ -2,9 +2,9 @@
     <div class="card">
         <div class="card-header">Servicio del dia {{servicio.created_at}}</div>
         <div class="card-body">
-            <input  v-if="editMode" type="text" class="form-control" v-model="servicio.descripcion" >
+            <input  v-if="editMode" type="text" class="form-control" v-model="servicio.cliente" >
             <p v-else >
-                {{servicio.descripcion}}
+                {{servicio.cliente}}
             </p>            
         </div>
         <div class="card-footer">

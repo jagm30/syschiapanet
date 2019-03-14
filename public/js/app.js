@@ -1963,6 +1963,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1982,9 +1986,10 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       var params = {
-        descripcion: this.cliente
+        cliente: this.cliente,
+        fecha_servicio: this.fecha_servicio
       };
-      this.descripcion = '';
+      this.cliente = '';
       axios.post('/servicios', params).then(function (response) {
         var servicio = response.data;
 
@@ -37656,6 +37661,34 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", { attrs: { for: "fecha_servicio" } }, [
+              _vm._v("Fecha de servicio")
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.fecha_servicio,
+                  expression: "fecha_servicio"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "date", name: "fecha_servicio" },
+              domProps: { value: _vm.fecha_servicio },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.fecha_servicio = $event.target.value
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
           _c(
             "button",
             { staticClass: "btn btn-primary", attrs: { type: "submit" } },
@@ -37837,25 +37870,25 @@ var render = function() {
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.servicio.descripcion,
-                expression: "servicio.descripcion"
+                value: _vm.servicio.cliente,
+                expression: "servicio.cliente"
               }
             ],
             staticClass: "form-control",
             attrs: { type: "text" },
-            domProps: { value: _vm.servicio.descripcion },
+            domProps: { value: _vm.servicio.cliente },
             on: {
               input: function($event) {
                 if ($event.target.composing) {
                   return
                 }
-                _vm.$set(_vm.servicio, "descripcion", $event.target.value)
+                _vm.$set(_vm.servicio, "cliente", $event.target.value)
               }
             }
           })
         : _c("p", [
             _vm._v(
-              "\n            " + _vm._s(_vm.servicio.descripcion) + "\n        "
+              "\n            " + _vm._s(_vm.servicio.cliente) + "\n        "
             )
           ])
     ]),
@@ -50541,8 +50574,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\syschiapanet\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\syschiapanet\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! D:\xampp\htdocs\syschiapanet\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\xampp\htdocs\syschiapanet\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

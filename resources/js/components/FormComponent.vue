@@ -13,6 +13,10 @@
                                             
                     </select>
                 </div>
+                <div class="form-group">
+                    <label for="fecha_servicio">Fecha de servicio</label>
+                    <input type="date" class="form-control" name="fecha_servicio" v-model="fecha_servicio">                       
+                </div>
                 <button type="submit" class="btn btn-primary">
                     Registrar
                 </button>
@@ -38,9 +42,10 @@
         methods:{
             newServicio(){
                 const params = {
-                    descripcion : this.cliente
+                    cliente         : this.cliente,
+                    fecha_servicio  : this.fecha_servicio
                 };
-                this.descripcion = '';
+                this.cliente = '';
                 axios.post('/servicios',params).then((response)=>{
                     const servicio = response.data;
                     this.$emit('new', servicio);                    

@@ -36,8 +36,10 @@ class ServicioController extends Controller
     {
         //
         $servicio = new Servicio();
-        $servicio->descripcion = $request->descripcion;
-        $servicio->user_id = auth()->id();
+        $servicio->descripcion      = $request->cliente;
+        $servicio->cliente          = $request->cliente;
+        $servicio->fecha_servicio   = $request->fecha_servicio;
+        $servicio->user_id          = auth()->id();
         $servicio->save();
 
         return $servicio;
